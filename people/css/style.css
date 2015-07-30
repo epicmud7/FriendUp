@@ -1,0 +1,48 @@
+.id{
+  height: 50px;
+}
+
+#googleMap{
+  height: 300px;
+  width: calc(inherit-20px);
+  margin: auto;
+}
+
+body{
+  background-color:#E74C3C;
+  text-align: center;
+}
+p, h1, h2, h3, h4, h5, h6{
+  color: white;
+  font-family: sans-serif;
+}
+@media screen and (min-width:400px){
+  .container{
+    width:50%;
+    background-color:#F39C12;
+    height:100%;
+    margin:10% auto 10% auto;
+    border-radius:25px;
+    border: 3px solid #96d4f4;
+  }
+  .title{
+    height:16%;
+    width:40%;
+    margin:auto;
+    margin-top:10%;
+    background-color:#F39C12;
+  }
+  .titletext{
+    position:relative;
+    top:10px
+  }
+}
+
+td{
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+
+table{
+  margin: 10px auto auto auto;
+}
