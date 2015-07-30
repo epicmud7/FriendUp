@@ -1,0 +1,44 @@
+
+body{
+  background-color:#96d4f4;
+  text-align: center;
+  font-size: 2.5vw;
+}
+p, h1, h2, h3, h4, h5, h6{
+  color: white;
+  font-family: Open Sans;
+  
+}
+.text{
+  padding: 0vh 3vh 10vh 3vh;}
+
+
+
+.logo{
+  margin-top: 5vh;
+}
+@media screen and (min-width:400px){
+  .container{
+    
+    width:50%;
+    background-color:#F39C12;
+    
+    margin:10% auto 10% auto;
+    border-radius:25px;
+  }
+  .title{
+    height:16%;
+    width:40%;
+    margin:auto;
+    margin-top:10%;
+    background-color:#F39C12;
+  }
+  .titletext{
+    position:relative;
+    top:10px
+  }
+}
+
+
+
+
