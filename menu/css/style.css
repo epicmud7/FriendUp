@@ -1,0 +1,66 @@
+body {
+  font-family: Open Sans, helvetica, sans-serif;
+  color: white;
+  	margin:0;
+	padding:0;
+	font-family:"arial",heletica,sans-serif;
+	font-size:12px;
+    background: #2980b9 url('http://s21.postimg.org/rd7lutloj/smileyss.png') repeat 0 0;
+	-webkit-animation: 10s linear 0s normal none infinite animate;
+	-moz-animation: 10s linear 0s normal none infinite animate;
+	-ms-animation: 10s linear 0s normal none infinite animate;
+	-o-animation: 10s linear 0s normal none infinite animate;
+	animation: 10s linear 0s normal none infinite animate;
+  animation-direction:alternate;
+ 
+}
+ 
+
+ 
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;};
+}
+#button:hover{
+   background:-webkit-linear-gradient(#F5B041, #B93D30) top right;;
+    transform: scale(1.1);
+}
+
+#button > p{ float:center
+  text-align:center;
+  margin:auto;
+}
+@media screen and (min-width: 350px){
+    #button {
+    background: #96d4f4;
+    color: #fff;
+    font-family: Sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 200px;
+    line-height: 60px;
+    margin: 50vh 20vh;
+    text-align: center;
+    border: 0;
+    transition: all .2s ease-in-out;
+    display:inline;
+    float:left;
+      font-weight: normal;
+}
+}
+@media screen and (max-width:350px){
+    #button {
+    background: #96d4f4;
+    color: #fff;
+    font-family: Sans-serif;
+    font-size: 20px;
+    height: 60px;
+    width: 200px;
+    line-height: 60px;
+    margin: 25px 25px;
+    text-align: center;
+    border: 0;
+    transition: all .2s ease-in-out;
+    align:inline-block;
+  }
+}
