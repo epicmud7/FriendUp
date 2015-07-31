@@ -1,16 +1,58 @@
-var request = new XMLHttpRequest();
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+
+    // Check if the XMLHttpRequest object has a "withCredentials" property.
+    // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    xhr.open(method, url, true);
+    
+    //TODO doesn't belong here
+    xhr.setRequestHeader('Accept', 'application/json');
+
+  } else if (typeof XDomainRequest != "undefined") {
+
+    // Otherwise, check if XDomainRequest.
+    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+
+    // Otherwise, CORS is not supported by the browser.
+    xhr = null;
+
+  }
+  return xhr;
+}
+
+var url = 'https://app.ticketmaster.eu/mfxapi/v1/events?apikey=LhNuq4GM6t7PGCzWAqkLY8W0zDbGvQ00&domain_ids=unitedkingdom&lang=en-us&lat=51.6324405&long=0.3515475&radius=50&eventdate_from=2015-07-29T00:00:00Z&eventdate_to=2015-08-29T00:00:00Z&max_price=3000&is_seats_available=true&is_not_cancelled=true&is_not_package=true&sort_by=proximity'
+var xhr = createCORSRequest('GET', url);
+if (!xhr) {
+  throw new Error('CORS not supported');
+}
+
+xhr.onload = function() {
+     var responseText = xhr.responseText;
+     console.log(responseText);
+     // process the response.
+     handleResponse();
+     
+};
+
+xhr.onerror = function() {
+     console.log('There was an error!');
+};
+
 
 var events;
 
-request.open('GET', 'https://app.ticketmaster.eu/mfxapi/v1/events?apikey=LhNuq4GM6t7PGCzWAqkLY8W0zDbGvQ00&domain_ids=unitedkingdom&lang=en-us&lat=51.6324405&long=0.3515475&radius=50&eventdate_from=2015-07-29T00:00:00Z&eventdate_to=2015-08-29T00:00:00Z&max_price=3000&is_seats_available=true&is_not_cancelled=true&is_not_package=true&sort_by=proximity');
-
-request.setRequestHeader('Accept', 'application/json');
 
 div = document.createElement('div');
 document.body.appendChild(div);
 
-request.onreadystatechange = function () {
-    
+xhr.send();
+
+function handleResponse(){    
   if (this.readyState === 4) {
       if(this.status === 200) {
         obj = JSON.parse(this.responseText);
@@ -128,5 +170,3 @@ function printEvent(e) {
   }
 };
 */
-
-request.send();
