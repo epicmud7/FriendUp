@@ -1,3 +1,9 @@
+var events;
+var useRealData = false;
+div = document.createElement('div');
+document.body.appendChild(div);
+
+
 function createCORSRequest(method, url) {
   var xhr = new XMLHttpRequest();
   if ("withCredentials" in xhr) {
@@ -25,37 +31,37 @@ function createCORSRequest(method, url) {
   return xhr;
 }
 
-var url = 'https://app.ticketmaster.eu/mfxapi/v1/events?apikey=LhNuq4GM6t7PGCzWAqkLY8W0zDbGvQ00&domain_ids=unitedkingdom&lang=en-us&lat=51.6324405&long=0.3515475&radius=50&eventdate_from=2015-07-29T00:00:00Z&eventdate_to=2015-08-29T00:00:00Z&max_price=3000&is_seats_available=true&is_not_cancelled=true&is_not_package=true&sort_by=proximity'
-var xhr = createCORSRequest('GET', url);
-if (!xhr) {
-  throw new Error('CORS not supported');
-}
+
+if(useRealData){
+    var url = 'https://app.ticketmaster.eu/mfxapi/v1/events?apikey=LhNuq4GM6t7PGCzWAqkLY8W0zDbGvQ00&domain_ids=unitedkingdom&lang=en-us&lat=51.6324405&long=0.3515475&radius=50&eventdate_from=2015-07-29T00:00:00Z&eventdate_to=2015-08-29T00:00:00Z&max_price=3000&is_seats_available=true&is_not_cancelled=true&is_not_package=true&sort_by=proximity'
+    var xhr = createCORSRequest('GET', url);
+    if (!xhr) {
+      throw new Error('CORS not supported');
+    }
 
 xhr.onload = function() {
-     var responseText = xhr.responseText;
-     console.log(responseText);
-     // process the response.
-     handleResponse();
-     
+    if (this.readyState === 4) {
+        if(this.status === 200) {
+            var responseText = xhr.responseText;
+            console.log(responseText);
+            // process the response.
+            handleSuccess(responseText);
+        }
+    }
 };
 
 xhr.onerror = function() {
      console.log('There was an error!');
 };
+    xhr.send();
+}else{
+    var fakeData=getFakeData();
+    handleSuccess(fakeData);
+}
 
+function handleSuccess(responseText){    
 
-var events;
-
-
-div = document.createElement('div');
-document.body.appendChild(div);
-
-xhr.send();
-
-function handleResponse(){    
-  if (this.readyState === 4) {
-      if(this.status === 200) {
-        obj = JSON.parse(this.responseText);
+        obj = JSON.parse(responseText);
         events = obj.events;
         console.log('Success');
         populateFirstEvent(events[0]);
@@ -67,8 +73,6 @@ function handleResponse(){
         }
 */
                 
-      }
-    }
 }
 
 // .toLocaleFormat('%d-%b-%Y');
