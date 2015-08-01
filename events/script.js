@@ -64,9 +64,9 @@ function handleSuccess(responseText){
         obj = JSON.parse(responseText);
         events = obj.events;
         console.log('Success');
-        populateFirstEvent(events[0]);
-        populateSecondEvent(events[1]);
-        populateThirdEvent(events[2])
+        populateEvent(events[0], 1);
+        populateEvent(events[1], 2);
+        populateEvent(events[2], 3);
 /*
         for (var i = 0; i < events.length; i++) {
             printEvent(events[i]);
@@ -86,63 +86,29 @@ function truncateString(s) {
     }
 }
 
-function populateFirstEvent(e) {
-    
-    
-    var date = Date.parse(e.localeventdate);
-    console.log(date.toString('dd-MMM-yyyy HH:mm:ss'));
-    
-    var element = document.getElementById("eventTitle");
-    element.innerHTML = truncateString(e.name);
-    var element = document.getElementById("venue");
-    element.innerHTML = e.venue.location.address.address + ', <br/>' + e.venue.location.address.city + ', <br/>' + e.venue.location.address.country + ', <br/>' + e.venue.location.address.postal_code;
-    var element = document.getElementById("price");
-    element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max;
-    var element = document.getElementById("date");
-    element.innerHTML = date.toString('dd-MMM-yyyy HH:mm:ss');
-    var element = document.getElementById("category");
-    element.innerHTML = e.categories[0].name;
-}
-
-function populateSecondEvent(e) {
+function populateEvent(e, number) {
     
     var date = Date.parse(e.localeventdate);
     console.log(date.toString('dd-MMM-yyyy HH:mm:ss'));
     
-    var element = document.getElementById("eventTitle2");
+    var element = document.getElementById("eventTitle" + number);
     element.innerHTML = truncateString(e.name);
 
-    var element = document.getElementById("venue2");
+    var element = document.getElementById("venue" + number);
     element.innerHTML = e.venue.location.address.address + ', <br/>' + e.venue.location.address.city + ', <br/>' + e.venue.location.address.country + ', <br/>' + e.venue.location.address.postal_code;
     
-    var element = document.getElementById("price2");
-    element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max;
+    var element = document.getElementById("price" + number);
+    element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max; 
     
-    var element = document.getElementById("date2");
+    var element = document.getElementById("date" + number);
     element.innerHTML = (date.toString('dd-MMM-yyyy HH:mm:ss'));
     
-    var element = document.getElementById("category2");
+    var element = document.getElementById("category" + number);
     element.innerHTML = e.categories[0].name;
+
 }
 
 
-
-function populateThirdEvent(e) {
-    
-    var date = Date.parse(e.localeventdate);
-    console.log(date.toString('dd-MMM-yyyy HH:mm:ss'));
-    
-    var element = document.getElementById("eventTitle3");
-    element.innerHTML = truncateString(e.name);
-    var element = document.getElementById("venue3");
-    element.innerHTML = e.venue.location.address.address + ', <br/>' + e.venue.location.address.city + ', <br/>' + e.venue.location.address.country + ', <br/>' + e.venue.location.address.postal_code;
-    var element = document.getElementById("price3");
-    element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max;
-    var element = document.getElementById("date3");
-    element.innerHTML = (date.toString('dd-MMM-yyyy HH:mm:ss'));
-    var element = document.getElementById("category3");
-    element.innerHTML = e.categories[0].name;
-}
 
 /*
 function createAndAppend(text, p) {
