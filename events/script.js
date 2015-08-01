@@ -99,7 +99,7 @@ function populateFirstEvent(e) {
     var element = document.getElementById("price");
     element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max;
     var element = document.getElementById("date");
-    element.innerHTML = (date.toString('dd-MMM-yyyy HH:mm:ss'));
+    element.innerHTML = date.toString('dd-MMM-yyyy HH:mm:ss');
     var element = document.getElementById("category");
     element.innerHTML = e.categories[0].name;
 }
@@ -111,15 +111,21 @@ function populateSecondEvent(e) {
     
     var element = document.getElementById("eventTitle2");
     element.innerHTML = truncateString(e.name);
+
     var element = document.getElementById("venue2");
     element.innerHTML = e.venue.location.address.address + ', <br/>' + e.venue.location.address.city + ', <br/>' + e.venue.location.address.country + ', <br/>' + e.venue.location.address.postal_code;
+    
     var element = document.getElementById("price2");
     element.innerHTML = '£' + e.price_ranges.including_ticket_fees.min + ' - £' + e.price_ranges.including_ticket_fees.max;
+    
     var element = document.getElementById("date2");
     element.innerHTML = (date.toString('dd-MMM-yyyy HH:mm:ss'));
+    
     var element = document.getElementById("category2");
     element.innerHTML = e.categories[0].name;
 }
+
+
 
 function populateThirdEvent(e) {
     
